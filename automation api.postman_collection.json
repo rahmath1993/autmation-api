@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "f35f18a8-545d-4c42-b7c0-f361356baa29",
+		"name": "automation api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36236689"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Fixed the test for success message",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Oke\", function() {",
+							"  const responseData = pm.response.json();",
+							"  pm.expect(responseData.message).to.equal(\"ok\");",
+							"});",
+							"",
+							"pm.test(\"API responds in less than 10000ms\", () => {",
+							"  const expectedTimeInMilliseconds = 10000;",
+							"",
+							"  pm.expect(pm.response.responseTime).to.be.lessThan(",
+							"    expectedTimeInMilliseconds,",
+							"    `The endpoint did not respond within ${expectedTimeInMilliseconds} ms. Response came in ${pm.response.responseTime} ms`",
+							"  );",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n {\n    \"id\": 1,\n    \"username\": \"Jhon\",\n    \"firstName\": \"Jhon\",\n    \"lastName\": \"Hoke\",\n    \"email\": \"JhonHoke@gmail.com\",\n    \"password\": \"Jhon24\",\n    \"phone\": \"081274844747\",\n    \"userStatus\": 1\n  }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}user/createWithList",
+					"host": [
+						"{{url}}user"
+					],
+					"path": [
+						"createWithList"
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'https://petstore.swagger.io/v2/user/createWithList' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n  {\n    \"id\": 1,\n    \"username\": \"Malhun\",\n    \"firstName\": \"Malhun\",\n    \"lastName\": \"Ghaniya\",\n    \"email\": \"malhun@gmail.com\",\n    \"password\": \"Malhun24\",\n    \"phone\": \"081274844747\",\n    \"userStatus\": 1\n  }\n]'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Fixed the test for success message",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Data Benar\", function() {",
+							"  const responseData = pm.response.json();",
+							"  pm.expect(responseData.id).to.equal(1);",
+							"  pm.expect(responseData.username).to.equal(\"Jhon\");",
+							"  pm.expect(responseData.firstName).to.equal(\"Jhon\");",
+							"  pm.expect(responseData.lastName).to.equal(\"Hoke\");",
+							"  pm.expect(responseData.email).to.equal(\"JhonHoke@gmail.com\");",
+							"  pm.expect(responseData.password).to.equal(\"Jhon24\");",
+							"  pm.expect(responseData.phone).to.equal(\"081274844747\");",
+							"  pm.expect(responseData.userStatus).to.equal(1);",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"});",
+							"",
+							"pm.test(\"API responds in less than 10000ms\", () => {",
+							"  const expectedTimeInMilliseconds = 10000;",
+							"",
+							"  pm.expect(pm.response.responseTime).to.be.lessThan(",
+							"    expectedTimeInMilliseconds,",
+							"    `The endpoint did not respond within ${expectedTimeInMilliseconds} ms. Response came in ${pm.response.responseTime} ms`",
+							"  );",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}user/{{username}}",
+					"host": [
+						"{{url}}user"
+					],
+					"path": [
+						"{{username}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'https://petstore.swagger.io/v2/user/createWithList' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n  {\n    \"id\": 1,\n    \"username\": \"Malhun\",\n    \"firstName\": \"Malhun\",\n    \"lastName\": \"Ghaniya\",\n    \"email\": \"malhun@gmail.com\",\n    \"password\": \"Malhun24\",\n    \"phone\": \"081274844747\",\n    \"userStatus\": 1\n  }\n]'"
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Fixed the test for success message",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Oke\", function() {",
+							"  const responseData = pm.response.json();",
+							"  pm.expect(responseData.message).to.equal(\"1\");",
+							"});",
+							"",
+							"pm.test(\"API responds in less than 10000ms\", () => {",
+							"  const expectedTimeInMilliseconds = 10000;",
+							"",
+							"  pm.expect(pm.response.responseTime).to.be.lessThan(",
+							"    expectedTimeInMilliseconds,",
+							"    `The endpoint did not respond within ${expectedTimeInMilliseconds} ms. Response came in ${pm.response.responseTime} ms`",
+							"  );",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"username\": \"Jhoni\",\n  \"firstName\": \"Jhonius\",\n  \"lastName\": \"Hoke\",\n  \"email\": \"JhonHoke@gmail.com\",\n  \"password\": \"Jhon24\",\n  \"phone\": \"8128828383\",\n  \"userStatus\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}user/{{username}}",
+					"host": [
+						"{{url}}user"
+					],
+					"path": [
+						"{{username}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X 'PUT' \\\n  'https://petstore.swagger.io/v2/user/jhon' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"id\": 0,\n  \"username\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"email\": \"string\",\n  \"password\": \"string\",\n  \"phone\": \"string\",\n  \"userStatus\": 0\n}'"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://petstore.swagger.io/v2/",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "{{username}}",
+			"type": "string"
+		}
+	]
+}
